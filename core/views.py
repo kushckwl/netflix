@@ -44,7 +44,8 @@ class ProfileCreate(View):
             profile = Profile.objects.create(**form.cleaned_data)
             if profile:
                 request.user.profiles.add(profile)
-                return redirect(f'/watch/{profile.uuid}')
+                # return redirect(f'/watch/{profile.uuid}')
+                return redirect('core:watch', profile_id=profile.uuid)
 
         return render(request,'profileCreate.html',{
             'form':form
